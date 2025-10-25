@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "FindAGrave Memorial Extractor",
+  "version": "1.0",
+  "author": "Miyako Jones",
+  "description": "Extracts a list of memorials from a FindAGrave cemetery memorial list page and saves the data in CSV format.",
+
+  "icons": {
+    "32": "icons/ext-icon.png"
+  },
+
+  "permissions": ["activeTab", "scripting"],
+
+  "host_permissions": [
+    "*://*.findagrave.com/*"
+  ],
+
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+
+  "action": {}
+}

@@ -1,0 +1,13 @@
+# Firefox/Chrome extension dev artifacts
+web-ext-artifacts/
+web-ext-config.js
+web-ext-config.json
+web-ext-log.txt
+web-ext-*
+
+# VS Code settings
+.vscode/
+
+# Misc
+*.bak
+*.tmp
