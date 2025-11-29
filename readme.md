@@ -26,7 +26,7 @@ For the Firefox (Desktop and Mobile) and possibly Safari version see: https://gi
 
 ## Installation
 
-Until the extension is approved for the Chrome WebStore, you can download a zip file from
+Until the extension is approved for the Chrome WebStore, you can download a zip file from the releases page.
 
 ## Usage
 
