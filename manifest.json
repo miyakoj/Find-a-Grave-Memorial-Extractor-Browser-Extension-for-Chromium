@@ -1,23 +1,31 @@
 {
   "manifest_version": 3,
-  "name": "FindAGrave Memorial Extractor",
+  "name": "Find a Grave Memorial Extractor",
   "version": "1.0",
   "author": "Miyako Jones",
-  "description": "Extracts a list of memorials from a FindAGrave cemetery memorial list page and saves the data in CSV format.",
+  "description": "Extracts a list of memorials from a Find a Grave cemetery memorial list page and saves the data in CSV format.",
 
   "icons": {
-    "32": "icons/ext-icon.png"
+    "32": "icons/ext-icon-32x32.png",
+    "64": "icons/ext-icon-64x64.png",
+    "128": "icons/ext-icon.png"
   },
 
-  "permissions": ["activeTab", "scripting"],
+  "permissions": ["activeTab", "scripting", "storage"],
 
   "host_permissions": [
-    "*://*.findagrave.com/*"
+    "*://*.findagrave.com/*",
+    "*://plus.wikitree.com/*"
   ],
 
   "background": {
     "service_worker": "scripts/background.js"
   },
 
-  "action": {}
+  "action": {},
+
+  "options_ui": {
+    "page": "pages/options.html",
+    "open_in_tab": false
+  }
 }
