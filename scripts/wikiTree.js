@@ -1,6 +1,24 @@
 const wikiTreeErrorMsg = 'Error downloading data from the WikiTree+ server.';
+const batchSize = 1000; // number of memorial IDs to query WikiTree+ for at a time
 
 // Query the WikiTree+ server to find matching profiles for an array of FindAGrave memorial IDs.
+async function findWTMatchesInBatches(memorialIDs) {
+    const batches = chunkArray(memorialIDs, batchSize);
+    let allResults = [];
+    for (const batch of batches) {
+        if (options.debugMode) {
+            console.log("batch:");
+            console.log(batch);
+        }
+
+        const result = await findWTMatches(batch);
+        if (result) {
+            allResults = allResults.concat(result);
+        }
+    }
+    return allResults;
+}
+
 async function findWTMatches(memorialIDs) {
     const params = new URLSearchParams();
     params.append('query', memorialIDs.join(','));
@@ -35,4 +53,12 @@ async function findWTMatches(memorialIDs) {
         if (options.debugMode) console.error(error);
         showErrorPopup(wikiTreeErrorMsg);
     }
+}
+
+function chunkArray(array, size) {
+    const result = [];
+    for (let i = 0; i < array.length; i += size) {
+        result.push(array.slice(i, i + size));
+    }
+    return result;
 }

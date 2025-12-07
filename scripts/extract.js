@@ -91,16 +91,23 @@ async function extractMemorialData() {
 
     if (options.useWikiTreeCheck) {
         const allMemorialIDs = extractedMemorials.map(memorial => memorial.memorialID);
-        await findWTMatches(allMemorialIDs).then((wikitreeIDs) => {
-            if (options.debugMode) console.log(wikitreeIDs);
 
+        if (options.debugMode) {
+            console.log('all memorials:');
+            console.log(allMemorialIDs);
+        }
+
+        await findWTMatchesInBatches(allMemorialIDs).then((wikitreeIDs) => {
             if (wikitreeIDs != null) {
                 extractedMemorials.forEach((memorial) => {
                     const match = wikitreeIDs.find(item => item.memorialID.toString() === memorial.memorialID);
                     memorial.wikiTreeIDs = match ? match.wikiTreeID : '';
                 });
 
-                if (options.debugMode) console.log(extractedMemorials);
+                if (options.debugMode) {
+                    console.log('extracted memorials:');
+                    console.log(extractedMemorials);
+                }
             }
             else {
                 extractedMemorials.map((memorial) => {
@@ -160,7 +167,13 @@ function createCSV(extractedMemorials) {
     }
 
     extractedMemorials.forEach((memorial) => {
-        let row = `${memorial.memorialID},${memorial.nameofDeceased},${memorial.birthDate},${memorial.deathDate},${memorial.hasPhoto},${memorial.hasGravePhoto},${memorial.memorialLink}`;
+        // Escape double quotes and wrap in quotes if needed
+        let safeName = memorial.nameofDeceased.replace(/"/g, '""');
+        if (safeName.includes(',') || safeName.includes('"')) {
+            safeName = `"${safeName}"`;
+        }
+
+        let row = `${memorial.memorialID},${safeName},${memorial.birthDate},${memorial.deathDate},${memorial.hasPhoto},${memorial.hasGravePhoto},${memorial.memorialLink}`;
 
         if (options.useWikiTreeCheck) {
             row += `,${memorial.wikiTreeIDs}`;
