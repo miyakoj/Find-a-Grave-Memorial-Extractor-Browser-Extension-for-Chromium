@@ -98,7 +98,7 @@ async function extractMemorialData() {
         }
 
         await findWTMatchesInBatches(allMemorialIDs).then((wikitreeIDs) => {
-            if (wikitreeIDs != null) {
+            if (wikitreeIDs.length > 0) {
                 extractedMemorials.forEach((memorial) => {
                     const match = wikitreeIDs.find(item => item.memorialID.toString() === memorial.memorialID);
                     memorial.wikiTreeIDs = match ? match.wikiTreeID : '';
