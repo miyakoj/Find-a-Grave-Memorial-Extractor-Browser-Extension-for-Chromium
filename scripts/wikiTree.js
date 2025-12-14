@@ -16,7 +16,21 @@ async function findWTMatchesInBatches(memorialIDs) {
             allResults = allResults.concat(result);
         }
     }
-    return allResults;
+
+    // re-process just in case there is more than one matching WikiTree ID per memorial ID
+    let allResultsMap = {};
+
+    for (const index in allResults) {
+        const result = allResults[index];
+
+        if (!allResultsMap[result.memorialID]) {
+            allResultsMap[result.memorialID] = [];
+        }
+
+        allResultsMap[result.memorialID].push(result.wikiTreeID);
+    }
+
+    return Object.keys(allResultsMap).length > 0 ? allResultsMap : null;
 }
 
 async function findWTMatches(memorialIDs) {
