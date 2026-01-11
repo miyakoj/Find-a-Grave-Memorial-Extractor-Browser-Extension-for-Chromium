@@ -1,6 +1,6 @@
 # Find a Grave Memorial Extractor For Chromium
 
-**Note**: If you use the [WikiTree Browser Extension (WBE)](https://www.wikitree.com/index.php?title=Space:WikiTree_Browser_Extension) this extension is unnecessary unless you want to trigger a memorial list download from an icon in your browser toolbar. The functionality is currently only in the preview version.
+**Note**: If you use the [WikiTree Browser Extension (WBE)](https://www.wikitree.com/index.php?title=Space:WikiTree_Browser_Extension) this extension is unnecessary unless you want to trigger a memorial list download from an icon in your browser toolbar. In the WBE version, the extraction is triggered by clicking a green "Extract to CSV" button in the search area on the memorial list page. WBE also works in Safari and Firefox.
 
 This is the Chromium (Chrome, Edge, and Opera) version of a browser extension extracts a list of memorials from a Find a Grave cemetery memorial list page and saves the data in CSV format. You can filter the memorial list first by using FG's search function. **Note:** Find a Grave limits the number of memorials loaded on a single page to 10,000.
 
@@ -23,7 +23,7 @@ For the Firefox (Desktop and Mobile) and possibly Safari version see: https://gi
 
 ## Options
 
-- You can choose to have the extension check each memorial to see if a profile for the deceased already exists on [WikiTree](https://www.wikitree.com). A column will be added to the CSV that displays a relevant WikiTree ID if found. This feature is disabled by default. Thank you to [Aleš Trtnik](https://www.wikitree.com/wiki/Trtnik-2) for allowing me to use his WikiTree+ tool. **Note:** WikiTree+ data is only updated once a week.
+- You can choose to have the extension check each memorial to see if a profile for the deceased already exists on [WikiTree](https://www.wikitree.com). A column will be added to the CSV that displays a link to a related WikiTree profile if found (there could be multiple matching profiles). This feature is disabled by default. Thank you to [Aleš Trtnik](https://www.wikitree.com/wiki/Trtnik-2) for allowing me to use his WikiTree+ tool. **Note:** WikiTree+ data is only updated once a week.
 - You can enable debugging, which is mostly useful for developers
 
 ## Installation
