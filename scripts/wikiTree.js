@@ -36,8 +36,8 @@ async function findWTMatchesInBatches(memorialIDs) {
 async function findWTMatches(memorialIDs) {
     const params = new URLSearchParams();
     params.append('query', memorialIDs.join(','));
-    // use the API endpoint originally meant for WikiTree BEE
-    const wikitreePlusUrl = `https://plus.wikitree.com/function/wtFindAGrave4Bee/FindAGraveMemorialExtractor.json?${params}`;
+    // use the WT+ API FG endpoint
+    const wikitreePlusUrl = `https://plus.wikitree.com/function/wtFindAGrave/FindAGraveMemorialExtractor.json?${params}`;
 
     try {
         const response = await fetch(wikitreePlusUrl, {

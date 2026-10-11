@@ -49,7 +49,20 @@ To set up the extension for local development:
    cd Find-a-Grave-Memorial-Extractor-Browser-Extension-for-Chromium
    ```
 
-2. **Load the extension into your browser:**
+2. **Install web-ext:**
+   ```
+   npm install --global web-ext
+   ```
+
+3. **Develop:**
+   Use whichever editor you prefer.
+
+   - To check your code:
+      ```
+      web-ext lint
+      ```
+
+4. **Load the extension into your browser:**
    - **[Desktop Chrome](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#load-unpacked):**
      1. Go to `chrome://extensions/`.
      2. Enable "Developer mode".
@@ -65,8 +78,6 @@ To set up the extension for local development:
      2. Enable "Developer mode".
      3. Click "Load unpacked" and select the extension folder.
 
-3. **Make changes and reload the extension in your browser to see the updates.**
-
 ## Testing
 
 The following cemeteries were used for testing:
@@ -74,12 +85,13 @@ The following cemeteries were used for testing:
 2. [Mount Zion MB Church Cemetery](https://www.findagrave.com/cemetery/2465876) (Small memorial list of 37 with every birth and death date combination.)
 3. [Pleasant Grove MB Church Cemetery](https://www.findagrave.com/cemetery/62035) (Medium memorial list of 484.)
 4. [Cottrell Memorial Garden](https://www.findagrave.com/cemetery/58088) (Large memorial list of 1,124.)
-5. [Gracelawn Cemetery](https://www.findagrave.com/cemetery/615/gracelawn-cemetery) (Very large memorial list of 22,993.)
+5. [Gracelawn Cemetery](https://www.findagrave.com/cemetery/615) (Very large memorial list of 22,993.)
 
 ## Credits
 
 * Extension icon by [Hina Siddiqui](https://www.dragonsandrainbows.com).
 * The WikiTree profile check feature was inspired by a script originally provided by [Katie Bryant](https://www.wikitree.com/wiki/Cooper-28960).
+
 ## License
 
 MIT License

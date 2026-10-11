@@ -1,5 +1,5 @@
 console.log('FindAGrave Memorial Extractor script loaded.');
-var options = {};
+let options = {};
 
 chrome.runtime.onMessage.addListener((message) => {
     if (message.action === "extractMemorials") {
@@ -35,7 +35,7 @@ chrome.runtime.onMessage.addListener((message) => {
 //   Links to all matching WikiTree profiles if any were found (optional)
 function processMemorialList() {
     if (window.location.hostname.includes('findagrave.com') && window.location.pathname.includes('memorial-search')) {
-        let totalPages = document.querySelector('#gotoPage') != null ? parseInt(document.querySelector('#gotoPage').getAttribute('max')) : 1;
+        let totalPages = document.querySelector('#gotoPage') != null ? Number.parseInt(document.querySelector('#gotoPage').getAttribute('max')) : 1;
 
         if (options.debugMode && totalPages > 10) {
             totalPages = 10;
@@ -43,8 +43,8 @@ function processMemorialList() {
 
         // auto-scroll to the bottom of the page in order to load all of the memorials if there is more than one page
         if (totalPages > 1) {
-            let lastHeight = 0;
-            var intervalId = setInterval(() => {
+            //let lastHeight = 0;
+            let intervalId = setInterval(() => {
                 window.scrollTo(0, document.body.scrollHeight);
                 const totalPagesLoaded = document.querySelectorAll('.list-item-page').length;
                 if (options.debugMode) {
@@ -52,7 +52,7 @@ function processMemorialList() {
                 }
 
                 if (totalPagesLoaded != totalPages) {
-                    lastHeight = document.body.scrollHeight;
+                    //lastHeight = document.body.scrollHeight;
                 }
                 else {
                     // all memorial pages have been loaded, so extract the data
@@ -188,7 +188,7 @@ function createCSV(extractedMemorials) {
 
     extractedMemorials.forEach((memorial) => {
         // Escape double quotes and wrap in quotes if needed
-        let safeName = memorial.nameofDeceased.replace(/"/g, '""');
+        let safeName = memorial.nameofDeceased.replaceAll('"', '""');
         if (safeName.includes(',') || safeName.includes('"')) {
             safeName = `"${safeName}"`;
         }
@@ -210,7 +210,7 @@ function createCSV(extractedMemorials) {
     link.setAttribute('href', url);
 
     // replace the spaces of the cemetery page title with underscores for filename use
-    let filename = document.querySelector('.page-title').textContent.trim().replace(/ /g, '_');
+    let filename = document.querySelector('.page-title').textContent.trim().replaceAll(' ', '_');
     link.setAttribute('download', filename + '.csv');
 
     document.body.appendChild(link); // required for Firefox
